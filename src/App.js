@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Cards from './Cards.js';
+import Board from './Board.js';
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
           <h1 className="App-title">Ready to test your memory?</h1>
         </header>
         <div className="App-body">
-          <Cards/>
+          <Board/>
         </div>
       </div>
     );

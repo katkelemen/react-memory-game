@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: #4f4f4f;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.Card-container { 
+	margin-top: 30px;
+	display: flex;
+  flex-wrap: wrap;
+}
+
+
