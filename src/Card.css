@@ -1,3 +1,12 @@
+.solved {
+  pointer-events: none;
+  background-color: white;
+  height: 200px;
+  width: 150px;
+  margin: 10px;
+  border: none;
+}
+
 .down {
 	height: 200px;
 	width: 150px;

@@ -11,11 +11,15 @@ class Board extends Component {
       cards: [
       {state: 'down', color: 'up1'}, 
       {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}
+      {state: 'down', color: 'up2'}, 
+      {state: 'down', color: 'up2'}
       ],
       faceUp: 0,
     };
+  }
+
+  countFaceUp(cardList) {
+    cardList.filter((card) => {return card.state === 'up'}).length();
   }
 
   handleClick(i) {
@@ -24,18 +28,26 @@ class Board extends Component {
     let currentCardColor = cards[i]['color'];
     if (currentCardState !== 'down') return;
     let faceUp;
-    if (this.state.faceUp < 2) {
+    if (this.state.faceUp === 0) {
       faceUp = this.state.faceUp + 1;
+      cards[i]['state'] = 'up';
+    } else if (this.state.faceUp === 1) {
+        const pairIndex = cards.indexOf(cards.filter((card) => {return card.state === 'up'})[0]);
+        const pairColor = cards.filter((card) => {return card.state === 'up'})[0]['color'];
+        if (pairColor === currentCardColor) {
+          cards[i]['state'] = 'solved';
+          cards[pairIndex]['state'] = 'solved';
+          faceUp = 0;
+        } else {
+          cards[i]['state'] = 'up';
+          faceUp = 2;
+        }
     } else {
-      cards = [
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}
-      ]
+      cards = cards.map((card) => {card['state'] = 'down';return card})
       faceUp = 1;
+      cards[i]['state'] = 'up';
     } 
-    cards[i]['state'] = 'up';
+    
     this.setState({
       cards: cards,
       faceUp: faceUp
@@ -45,7 +57,9 @@ class Board extends Component {
   renderCard(i) {
     return (
       <Card
-        className={this.state.cards[i]['state'] === 'down' ? 'down' : this.state.cards[i]['color']}
+        className={this.state.cards[i]['state'] === 'solved' || this.state.cards[i]['state'] === 'down'  ? 
+        this.state.cards[i]['state'] : 
+        this.state.cards[i]['color']}
         onClick={() => this.handleClick(i)}
       />
     );
