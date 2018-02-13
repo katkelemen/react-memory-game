@@ -13,13 +13,12 @@ class Board extends Component {
       {state: 'down', color: 'up1'}, 
       {state: 'down', color: 'up2'}, 
       {state: 'down', color: 'up2'}
-      ],
-      faceUp: 0,
+      ]
     };
   }
 
-  countFaceUp(cardList) {
-    cardList.filter((card) => {return card.state === 'up'}).length();
+  countFaceUp() {
+    return this.state.cards.filter((card) => {return card.state === 'up'}).length;
   }
 
   handleClick(i) {
@@ -27,30 +26,24 @@ class Board extends Component {
     let currentCardState = cards[i]['state'];
     let currentCardColor = cards[i]['color'];
     if (currentCardState !== 'down') return;
-    let faceUp;
-    if (this.state.faceUp === 0) {
-      faceUp = this.state.faceUp + 1;
+    if (this.countFaceUp() === 0) {
       cards[i]['state'] = 'up';
-    } else if (this.state.faceUp === 1) {
+    } else if (this.countFaceUp() === 1) {
         const pairIndex = cards.indexOf(cards.filter((card) => {return card.state === 'up'})[0]);
         const pairColor = cards.filter((card) => {return card.state === 'up'})[0]['color'];
         if (pairColor === currentCardColor) {
           cards[i]['state'] = 'solved';
           cards[pairIndex]['state'] = 'solved';
-          faceUp = 0;
         } else {
           cards[i]['state'] = 'up';
-          faceUp = 2;
         }
     } else {
       cards = cards.map((card) => {card['state'] = 'down';return card})
-      faceUp = 1;
       cards[i]['state'] = 'up';
     } 
     
     this.setState({
-      cards: cards,
-      faceUp: faceUp
+      cards: cards
     });
   }
 

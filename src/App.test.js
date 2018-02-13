@@ -14,10 +14,10 @@ it('1 card clicked', () => {
       {state: 'up', color: 'up1'}, 
       {state: 'down', color: 'up2'}, 
       {state: 'down', color: 'up2'}
-      ],
-      faceUp: 1,
+      ]
     }
   )
+  expect(component.countFaceUp()).toEqual(1);
   ReactDOM.unmountComponentAtNode(div);
 })
 
@@ -34,9 +34,10 @@ it('2 different cards clicked', () => {
       {state: 'up', color: 'up1'}, 
       {state: 'up', color: 'up2'}, 
       {state: 'down', color: 'up2'}
-      ],
-      faceUp: 2,
+      ]
   })
+  expect(component.countFaceUp()).toEqual(2);
+
   ReactDOM.unmountComponentAtNode(div);
 })
 
@@ -53,9 +54,9 @@ it('2 similar cards clicked', () => {
       {state: 'solved', color: 'up1'}, 
       {state: 'down', color: 'up2'}, 
       {state: 'down', color: 'up2'}
-      ],
-      faceUp: 0,
+      ]
   })
+  expect(component.countFaceUp()).toEqual(0);
   ReactDOM.unmountComponentAtNode(div);
 })
 
