@@ -9,10 +9,15 @@ it('1 card clicked', () => {
   
   component.handleClick(1)
   expect(component.state).toEqual({
-  	"cards": ["down", "up1", "down", "down"], 
-  	"colorList": ["up1", "up1", "up2", "up2"], 
-  	"faceUp": 1
-  })
+      cards: [
+      {state: 'down', color: 'up1'}, 
+      {state: 'up', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}
+      ],
+      faceUp: 1,
+    }
+  )
   ReactDOM.unmountComponentAtNode(div);
 })
 
@@ -24,9 +29,13 @@ it('2 cards clicked', () => {
   component.handleClick(2)
 
   expect(component.state).toEqual({
-  	"cards": ["down", "up1", "up1", "down"], 
-  	"colorList": ["up1", "up1", "up2", "up2"], 
-  	"faceUp": 2
+  	cards: [
+      {state: 'down', color: 'up1'}, 
+      {state: 'up', color: 'up1'}, 
+      {state: 'up', color: 'up1'}, 
+      {state: 'down', color: 'up1'}
+      ],
+      faceUp: 2,
   })
   ReactDOM.unmountComponentAtNode(div);
 })
@@ -40,9 +49,13 @@ it('3 cards clicked', () => {
   component.handleClick(3)
 
   expect(component.state).toEqual({
-  	"cards": ["down", "down", "down", "up1"], 
-  	"colorList": ["up1", "up1", "up2", "up2"], 
-  	"faceUp": 1
+  	cards: [
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'up', color: 'up1'}
+      ],
+      faceUp: 1,
   })
   ReactDOM.unmountComponentAtNode(div);
 })

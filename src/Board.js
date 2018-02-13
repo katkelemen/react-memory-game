@@ -8,26 +8,34 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: ['down','down','down','down'],
-      colorList: ['up1', 'up1', 'up2', 'up2'],
+      cards: [
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}
+      ],
       faceUp: 0,
     };
   }
 
   handleClick(i) {
     let cards = this.state.cards.slice();
+    let currentCardState = cards[i]['state'];
+    let currentCardColor = cards[i]['color'];
+    if (currentCardState !== 'down') return;
     let faceUp;
-    if (cards[i] === 'down' && this.state.faceUp < 2) {
-      cards[i] = 'up1';
+    if (this.state.faceUp < 2) {
       faceUp = this.state.faceUp + 1;
-    } else if (cards[i] === 'down' && this.state.faceUp === 2) {
-      cards = ['down','down','down','down'];
-      cards[i] = 'up1';
-      faceUp = 1;
     } else {
-      // cards was face up
-    }
-
+      cards = [
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}, 
+      {state: 'down', color: 'up1'}
+      ]
+      faceUp = 1;
+    } 
+    cards[i]['state'] = 'up';
     this.setState({
       cards: cards,
       faceUp: faceUp
@@ -37,7 +45,7 @@ class Board extends Component {
   renderCard(i) {
     return (
       <Card
-        className={this.state.cards[i]}
+        className={this.state.cards[i]['state'] === 'down' ? 'down' : this.state.cards[i]['color']}
         onClick={() => this.handleClick(i)}
       />
     );
