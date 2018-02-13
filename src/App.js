@@ -12,7 +12,7 @@ class App extends Component {
           <h1 className="App-title">Ready to test your memory?</h1>
         </header>
         <div className="App-body">
-          <Board/>
+          <Board colors='up2 up2 up1 up1 up3 up3'/>
         </div>
       </div>
     );

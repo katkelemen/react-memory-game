@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import Card from './Card.js';
 import {shuffle} from './helper_functions.js';
 
-// console.log(shuffle(['a','b','c','d']));
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: [
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up1'}, 
-      {state: 'down', color: 'up2'}, 
-      {state: 'down', color: 'up2'}
-      ]
+      cards: this.props.colors.split(' ').map((color) => {return {state: 'down', color: color}})
     };
   }
 
@@ -49,6 +43,7 @@ class Board extends Component {
   renderCard(i) {
     return (
       <Card
+        key={i}
         className={this.state.cards[i]['state'] === 'solved' || this.state.cards[i]['state'] === 'down'  ? 
         this.state.cards[i]['state'] : 
         this.state.cards[i]['color']}
@@ -58,16 +53,12 @@ class Board extends Component {
   }
 
   render() {
-
-    return (
-      
+    return (   
       <div className="Card-container">
-           {this.renderCard(0)}
-           {this.renderCard(1)}
-           {this.renderCard(2)}
-           {this.renderCard(3)}
+        {this.props.colors.split(' ').map(
+          (c, index) => {return this.renderCard(index)}
+        )}
       </div>
-        
     );
   }
 }

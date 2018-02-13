@@ -5,7 +5,7 @@ import Board from './Board'
 
 it('1 card clicked', () => {
   const div = document.createElement('div');
-  var component = ReactDOM.render(<Board />, div);
+  var component = ReactDOM.render(<Board colors='up1 up1 up2 up2'/>, div);
   
   component.handleClick(1)
   expect(component.state).toEqual({
@@ -23,7 +23,7 @@ it('1 card clicked', () => {
 
 it('2 different cards clicked', () => {
   const div = document.createElement('div');
-  var component = ReactDOM.render(<Board />, div);
+  var component = ReactDOM.render(<Board colors='up1 up1 up2 up2'/>, div);
   
   component.handleClick(1)
   component.handleClick(2)
@@ -43,7 +43,7 @@ it('2 different cards clicked', () => {
 
 it('2 similar cards clicked', () => {
   const div = document.createElement('div');
-  var component = ReactDOM.render(<Board />, div);
+  var component = ReactDOM.render(<Board colors='up1 up1 up2 up2'/>, div);
   
   component.handleClick(0)
   component.handleClick(1)
