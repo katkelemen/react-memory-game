@@ -30,15 +30,14 @@ class Board extends Component {
       cards[i]['state'] = 'up';
     } else if (this.countFaceUp() === 1) {
         const pairIndex = cards.indexOf(cards.filter((card) => {return card.state === 'up'})[0]);
-        const pairColor = cards.filter((card) => {return card.state === 'up'})[0]['color'];
-        if (pairColor === currentCardColor) {
+        if (cards[pairIndex]['color'] === currentCardColor) {
           cards[i]['state'] = 'solved';
           cards[pairIndex]['state'] = 'solved';
         } else {
           cards[i]['state'] = 'up';
         }
     } else {
-      cards = cards.map((card) => {card['state'] = 'down';return card})
+      cards = cards.map((card) => {if (card['state'] === 'up') {card['state'] = 'down'};return card})
       cards[i]['state'] = 'up';
     } 
     
