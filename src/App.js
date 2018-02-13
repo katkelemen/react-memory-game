@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Board from './Board.js';
 
+// <Board colors='8' random='true'>
+// disappear slowly
+// count score
+// beautify
 class App extends Component {
   render() {
     return (
@@ -12,7 +16,7 @@ class App extends Component {
           <h1 className="App-title">Ready to test your memory?</h1>
         </header>
         <div className="App-body">
-          <Board colors='up2 up2 up1 up1 up3 up3'/>
+          <Board colors={8} random={true}/>
         </div>
       </div>
     );

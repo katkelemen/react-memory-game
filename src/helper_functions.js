@@ -16,3 +16,13 @@ export const shuffle = function(array) {
 
   return array;
 }
+
+export const rangeTwice = function(num) {
+  let arr = []  
+  
+  for (var i=1; i <= num; i++) {
+    arr.push(i)
+    arr.push(i)
+  }
+  return arr;
+}

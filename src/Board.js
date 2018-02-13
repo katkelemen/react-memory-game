@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import Card from './Card.js';
-import {shuffle} from './helper_functions.js';
+import { shuffle, rangeTwice } from './helper_functions.js';
 
 
 class Board extends Component {
   constructor(props) {
     super(props);
+    let cards = rangeTwice(this.props.colors).map((number) => {return {state: 'down', color: 'up' + number.toString()}});
+    if (this.props.random) {
+      shuffle(cards);
+    } 
     this.state = {
-      cards: this.props.colors.split(' ').map((color) => {return {state: 'down', color: color}})
+      cards: cards
     };
+
   }
 
   countFaceUp() {
@@ -55,7 +60,7 @@ class Board extends Component {
   render() {
     return (   
       <div className="Card-container">
-        {this.props.colors.split(' ').map(
+        {rangeTwice(this.props.colors).map(
           (c, index) => {return this.renderCard(index)}
         )}
       </div>
