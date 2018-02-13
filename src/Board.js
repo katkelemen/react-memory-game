@@ -11,7 +11,8 @@ class Board extends Component {
       shuffle(cards);
     } 
     this.state = {
-      cards: cards
+      cards: cards,
+      score: 0
     };
 
   }
@@ -41,7 +42,8 @@ class Board extends Component {
     } 
     
     this.setState({
-      cards: cards
+      cards: cards,
+      score: this.state.score + 1
     });
   }
 
@@ -63,6 +65,7 @@ class Board extends Component {
         {rangeTwice(this.props.colors).map(
           (c, index) => {return this.renderCard(index)}
         )}
+        <h2>Your score: {this.state.score}</h2>
       </div>
     );
   }
