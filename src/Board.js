@@ -17,26 +17,21 @@ class Board extends Component {
   handleClick(i) {
     let cards = this.state.cards.slice();
     let faceUp;
-    // cards[i] = cards[i] === 'down' ? "up1" : "down";
     if (cards[i] === 'down' && this.state.faceUp < 2) {
       cards[i] = 'up1';
       faceUp = this.state.faceUp + 1;
-    } else if (cards[i] === 'down' && this.state.faceUp >= 2) {
+    } else if (cards[i] === 'down' && this.state.faceUp === 2) {
       cards = ['down','down','down','down'];
       cards[i] = 'up1';
       faceUp = 1;
-    } else if (cards[i] !== 'down' && this.state.faceUp > 0) {
-      cards[i] = 'down';
-      faceUp = this.state.faceUp - 1;
+    } else {
+      // cards was face up
     }
 
     this.setState({
       cards: cards,
       faceUp: faceUp
     });
-
-    console.log(this.state.cards, this.state.faceUp)
-  
   }
 
   renderCard(i) {
